@@ -75,11 +75,9 @@ public class CBCPassphraseEncrypt extends CBCMode
 		// so we can include them before the encrypted bytes
 		// The result: SALT + IV + ENCRYPTEDBYTES
 		int pos = 0;
-		if (salt != null)
-		{
-			packBytes(salt, result, pos);
-			pos += salt.length;
-		}
+		
+		packBytes(salt, result, pos);
+		pos += salt.length;
 		
 		packBytes(IV, result, pos);
 		pos += IV.length;

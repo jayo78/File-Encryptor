@@ -23,7 +23,7 @@ public class CBCPassphraseDecrypt extends CBCMode
 	// default constructor, must set passphrase later**
 
 	public CBCPassphraseDecrypt() throws NoSuchAlgorithmException,
-							   NoSuchPaddingException
+					     NoSuchPaddingException
 	{
 		cipher = Cipher.getInstance(TRANSFORMATION);
 		this.passPhrase = "";
@@ -34,8 +34,8 @@ public class CBCPassphraseDecrypt extends CBCMode
 	// to construct the decryption key
 
 	public CBCPassphraseDecrypt(String passPhrase) throws NoSuchAlgorithmException,
-												InvalidKeySpecException,
-												NoSuchPaddingException
+							      InvalidKeySpecException,
+							      NoSuchPaddingException
 	{
 		this();
 		this.passPhrase = passPhrase;
@@ -48,12 +48,13 @@ public class CBCPassphraseDecrypt extends CBCMode
 	// -- must follow: SALT + IV + ENCRYPTEDBYTES
 
 	public byte[] doMode(byte[] toDecrypt) throws InvalidKeyException,
-												  InvalidAlgorithmParameterException,
-												  IllegalBlockSizeException,
-												  BadPaddingException, 
-												  NoSuchAlgorithmException, 
-												  InvalidKeySpecException
+						      InvalidAlgorithmParameterException,
+						      IllegalBlockSizeException,
+						      BadPaddingException, 
+					              NoSuchAlgorithmException, 
+						      InvalidKeySpecException
 	{
+		// get the salt, update input, and generate the key
 		byte[] salt = unpackBytes(toDecrypt, 16, 0);
 		toDecrypt = deleteBytes(toDecrypt, 16);
 		this.key = GenerateKey.genKey(passPhrase, salt);

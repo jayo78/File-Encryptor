@@ -32,12 +32,12 @@ public abstract class CBCMode
 	protected Cipher cipher;
 
 	public abstract byte[] doMode(byte[] input) throws NoSuchAlgorithmException,
-										   			   NoSuchPaddingException,
-										   			   InvalidKeyException,
-										   			   IllegalBlockSizeException,
-										   			   BadPaddingException,
-										   			   InvalidAlgorithmParameterException, 
-										   			   InvalidKeySpecException;
+							   NoSuchPaddingException,
+							   InvalidKeyException,
+							   IllegalBlockSizeException,
+							   BadPaddingException,
+							   InvalidAlgorithmParameterException, 
+							   InvalidKeySpecException;
 	// returns the key
 	
 	public SecretKey getKey()

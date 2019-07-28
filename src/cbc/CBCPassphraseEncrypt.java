@@ -21,8 +21,8 @@ public class CBCPassphraseEncrypt extends CBCMode
 	// default constructor, must set key later**
 	
 	public CBCPassphraseEncrypt() throws NoSuchAlgorithmException,
-										 NoSuchPaddingException, 
-										 InvalidKeySpecException
+					     NoSuchPaddingException, 
+					     InvalidKeySpecException
 	{
 		cipher = Cipher.getInstance(TRANSFORMATION);
 		this.salt = new byte[16];
@@ -33,8 +33,8 @@ public class CBCPassphraseEncrypt extends CBCMode
 	// secure PBE hashing algorithm, implemented in the GenerateKey class
 
 	public CBCPassphraseEncrypt(String passPhrase) throws NoSuchAlgorithmException,
-														  InvalidKeySpecException,
-														  NoSuchPaddingException
+							      InvalidKeySpecException,
+							      NoSuchPaddingException
 	{
 		this();
 		this.salt = GenerateKey.getRandomSalt();
@@ -46,10 +46,10 @@ public class CBCPassphraseEncrypt extends CBCMode
 	// the output will be of the format: SALT + IV + ENCRYPTEDBYTES
 	
 	public byte[] doMode(byte[] toEncrypt) throws NoSuchAlgorithmException,
-								  				  NoSuchPaddingException,
-								  				  InvalidKeyException,
-								  				  IllegalBlockSizeException,
-								  				  BadPaddingException
+						      NoSuchPaddingException,
+						      InvalidKeyException,
+						      IllegalBlockSizeException,
+						      BadPaddingException
 	{		
 		cipher.init(Cipher.ENCRYPT_MODE, key);
 		byte[] result;
@@ -113,7 +113,7 @@ public class CBCPassphraseEncrypt extends CBCMode
 	// set the key with random salt and passphrase arg
 	
 	public void setKey(String passPhrase, byte[] salt) throws NoSuchAlgorithmException, 
-												 InvalidKeySpecException
+								  InvalidKeySpecException
 	{
 		if(salt.length != 16)
 			throw new IllegalArgumentException();

@@ -16,6 +16,7 @@ encryption or decryption methods
 - two classes already extend CBCMode to implement encryption with a salt and passphrase
 
 ## TODO
+- wipe key and passphrase after encrypt/decrypt from mem
 - add secure file wipe method 
 - directory encryption
 

@@ -38,7 +38,7 @@ public abstract class CBCMode
 							   BadPaddingException,
 							   InvalidAlgorithmParameterException, 
 							   InvalidKeySpecException;
-	// returns the key
+	// returns the key (testing)
 	
 	public SecretKey getKey()
 	{

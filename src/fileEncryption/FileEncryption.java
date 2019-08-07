@@ -52,7 +52,7 @@ public class FileEncryption
 	// write data to a file
 	
 	public static void writeDataToFile(String filePath, byte[] data) throws FileNotFoundException, 
-																			IOException
+									        IOException
 	{
 		try (FileOutputStream out = new FileOutputStream(new File(filePath)))
 		{
@@ -76,14 +76,14 @@ public class FileEncryption
 	// the encrypted bytes are then written to a new .enc file, retaining the original 
 	// file input name
 	
-	public static void encrypt(String passPhrase, String fileIn) throws NoSuchAlgorithmException, 
-																 		InvalidKeySpecException, 
-																 		NoSuchPaddingException, 
-																 		InvalidKeyException, 
-																 		IllegalBlockSizeException, 
-																 		BadPaddingException, 
-																 		InvalidAlgorithmParameterException, 
-																 		IOException
+public static void encrypt(String passPhrase, String fileIn) throws NoSuchAlgorithmException, 
+								    InvalidKeySpecException, 
+								    NoSuchPaddingException, 
+								    InvalidKeyException, 
+								    IllegalBlockSizeException, 
+								    BadPaddingException, 
+								    InvalidAlgorithmParameterException, 
+								    IOException
 	{
 		CBCMode enc = new CBCPassphraseEncrypt(passPhrase);
 		
@@ -98,13 +98,13 @@ public class FileEncryption
 	// the plaintext bytes are then written to a new file
 	
 	public static void decrypt(String passPhrase, String fileIn) throws IOException, 
-																		NoSuchAlgorithmException, 
-																		InvalidKeySpecException, 
-																		NoSuchPaddingException, 
-																		InvalidKeyException, 
-																		IllegalBlockSizeException, 
-																		BadPaddingException, 
-																		InvalidAlgorithmParameterException 
+									    NoSuchAlgorithmException, 
+									    InvalidKeySpecException, 
+									    NoSuchPaddingException, 
+									    InvalidKeyException, 
+									    IllegalBlockSizeException, 
+									    BadPaddingException, 
+									    InvalidAlgorithmParameterException 
 	{
 		if(fileExists(fileIn.substring(0, fileIn.lastIndexOf("."))))
 		{

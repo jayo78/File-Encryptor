@@ -24,9 +24,7 @@ public class CBCPassphraseEncrypt extends CBCMode
 					     NoSuchPaddingException, 
 					     InvalidKeySpecException
 	{
-		cipher = Cipher.getInstance(TRANSFORMATION);
-		this.salt = new byte[16];
-		this.key = GenerateKey.genKey("", salt);
+		this("password");
 	}
 
 	// generates the key from a pass phrase and random salt through the PBKDF2
@@ -36,9 +34,9 @@ public class CBCPassphraseEncrypt extends CBCMode
 							      InvalidKeySpecException,
 							      NoSuchPaddingException
 	{
-		this();
 		this.salt = GenerateKey.getRandomSalt();
 		this.key = GenerateKey.genKey(passPhrase, this.salt);
+		cipher = Cipher.getInstance(TRANSFORMATION);
 	}
 
 	// encrypt the input using a Cipher instance

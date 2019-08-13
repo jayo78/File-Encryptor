@@ -25,8 +25,7 @@ public class CBCPassphraseDecrypt extends CBCMode
 	public CBCPassphraseDecrypt() throws NoSuchAlgorithmException,
 					     NoSuchPaddingException
 	{
-		cipher = Cipher.getInstance(TRANSFORMATION);
-		this.passPhrase = "";
+		this("");
 	}
 
 	// constructor to accept a passphrase.
@@ -36,9 +35,9 @@ public class CBCPassphraseDecrypt extends CBCMode
 	public CBCPassphraseDecrypt(String passPhrase) throws NoSuchAlgorithmException,
 							      InvalidKeySpecException,
 							      NoSuchPaddingException
-	{
-		this();
+	{	
 		this.passPhrase = passPhrase;
+		cipher = Cipher.getInstance(TRANSFORMATION);
 	}
 
 	// unpack the IV and salt from the 32 bit header 

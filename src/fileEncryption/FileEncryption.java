@@ -76,14 +76,14 @@ public class FileEncryption
 	// the encrypted bytes are then written to a new .enc file, retaining the original 
 	// file input name
 	
-public static void encrypt(String passPhrase, String fileIn) throws NoSuchAlgorithmException, 
-								    InvalidKeySpecException, 
-								    NoSuchPaddingException, 
-								    InvalidKeyException, 
-								    IllegalBlockSizeException, 
-								    BadPaddingException, 
-								    InvalidAlgorithmParameterException, 
-								    IOException
+	public static void encrypt(String passPhrase, String fileIn) throws NoSuchAlgorithmException, 
+								    	    InvalidKeySpecException, 
+								            NoSuchPaddingException, 
+								            InvalidKeyException, 
+								            IllegalBlockSizeException, 
+								            BadPaddingException, 
+								            InvalidAlgorithmParameterException, 
+								            IOException
 	{
 		CBCMode enc = new CBCPassphraseEncrypt(passPhrase);
 		

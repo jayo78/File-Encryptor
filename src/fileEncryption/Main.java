@@ -19,7 +19,7 @@ public class Main {
 		
 		if(args.length != 3)
 		{
-			throw new IllegalArgumentException();
+			System.out.println("Usage: java -jar fileEncryption <encrypt/decrypt> <filePath> <passphrase>");
 		}
 		
 		String mode = args[0];

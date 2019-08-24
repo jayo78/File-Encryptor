@@ -21,24 +21,22 @@ public class CBCPassphraseEncrypt extends CBCMode
 	// default constructor, must set key later**
 	
 	public CBCPassphraseEncrypt() throws NoSuchAlgorithmException,
-										 NoSuchPaddingException, 
-										 InvalidKeySpecException
+					     NoSuchPaddingException, 
+					     InvalidKeySpecException
 	{
-		cipher = Cipher.getInstance(TRANSFORMATION);
-		this.salt = new byte[16];
-		this.key = GenerateKey.genKey("", salt);
+		this("password");
 	}
 
 	// generates the key from a pass phrase and random salt through the PBKDF2
 	// secure PBE hashing algorithm, implemented in the GenerateKey class
 
 	public CBCPassphraseEncrypt(String passPhrase) throws NoSuchAlgorithmException,
-														  InvalidKeySpecException,
-														  NoSuchPaddingException
+							      InvalidKeySpecException,
+							      NoSuchPaddingException
 	{
-		this();
 		this.salt = GenerateKey.getRandomSalt();
 		this.key = GenerateKey.genKey(passPhrase, this.salt);
+		cipher = Cipher.getInstance(TRANSFORMATION);
 	}
 
 	// encrypt the input using a Cipher instance
@@ -46,10 +44,10 @@ public class CBCPassphraseEncrypt extends CBCMode
 	// the output will be of the format: SALT + IV + ENCRYPTEDBYTES
 	
 	public byte[] doMode(byte[] toEncrypt) throws NoSuchAlgorithmException,
-								  				  NoSuchPaddingException,
-								  				  InvalidKeyException,
-								  				  IllegalBlockSizeException,
-								  				  BadPaddingException
+						      NoSuchPaddingException,
+						      InvalidKeyException,
+						      IllegalBlockSizeException,
+						      BadPaddingException
 	{		
 		cipher.init(Cipher.ENCRYPT_MODE, key);
 		byte[] result;
@@ -75,11 +73,9 @@ public class CBCPassphraseEncrypt extends CBCMode
 		// so we can include them before the encrypted bytes
 		// The result: SALT + IV + ENCRYPTEDBYTES
 		int pos = 0;
-		if (salt != null)
-		{
-			packBytes(salt, result, pos);
-			pos += salt.length;
-		}
+		
+		packBytes(salt, result, pos);
+		pos += salt.length;
 		
 		packBytes(IV, result, pos);
 		pos += IV.length;
@@ -113,7 +109,7 @@ public class CBCPassphraseEncrypt extends CBCMode
 	// set the key with random salt and passphrase arg
 	
 	public void setKey(String passPhrase, byte[] salt) throws NoSuchAlgorithmException, 
-												 InvalidKeySpecException
+								  InvalidKeySpecException
 	{
 		if(salt.length != 16)
 			throw new IllegalArgumentException();
